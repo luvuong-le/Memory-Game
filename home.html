@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <title>Memory Game</title>
+
+    <head>
+        <link rel="stylesheet" href="styles.css"  />
+        <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <h3 class="title">Memory Game</h3>
+        <div id="main-menu">
+            <div class="main-menu-option">
+                <a style="text-decoration: none;" href="index.html"><button class="main-menu-btn">Play Game</button></a>
+            </div> <br />
+            <div class="main-menu-option">
+                <button id="rules" class="main-menu-btn">Show Rules</button>
+            </div>
+        </div>
+
+        <div id="rules_modal">
+            <div id="close">
+                <span id="close_btn" class="glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="rules_smaller_modal">
+                <div id="rule-text">
+                    <h3 class="rule">Basic Memory Game, Pick two cards, if those cards are matching, they will stay flipped</h3>
+                </div>
+            </div>
+        </div>
+        <script src="modal.js"></script>
+    </body>
+</html>
