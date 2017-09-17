@@ -8,7 +8,8 @@ let memoryGame = {
         comparsion_clicked_element: null,
         game_over: document.getElementById("game-over"),
         winner: document.getElementById("winner"),
-        play_again: document.getElementById("play_again")
+        play_again: document.getElementById("play_again"),
+        match: document.getElementById("match")
     },
     image_src: ["css.jpg", "html.png", "JSIcon.png", "profile44.jpg", "rails.png"],
     imageArray: [],
@@ -20,23 +21,19 @@ let memoryGame = {
 
 memoryGame.evtCallbacks = {
     showImage: function (mouseEvent) {
-
         /* Remove and add image on click, if the images dont match make them hidden again */
         mouseEvent.currentTarget.firstChild.classList.remove('hidden');
         this.e.comparsion_clicked_element = mouseEvent.currentTarget;
+        this.e.comparsion_clicked_element.style.pointerEvents = "none";
         mouseEvent.currentTarget.firstChild.classList.add('visible');
         this.updateCardsNum();
 
         if(this.e.last_clicked_element != null) {
-            let memoryGame = this;
             setTimeout(function() {
                 if (memoryGame.e.last_clicked_element.firstChild.src != memoryGame.e.comparsion_clicked_element.firstChild.src) {
 
                     /* If both images arent the same flip back */
                     memoryGame.flipBack();
-
-                    memoryGame.e.comparsion_clicked_element = null;
-                    memoryGame.e.last_clicked_element = null;
 
                     memoryGame.tries_left--;
                     memoryGame.e.tries_left_e.innerHTML = memoryGame.tries_left;
@@ -54,12 +51,24 @@ memoryGame.evtCallbacks = {
                         memoryGame.turnOffPointers();
                     }
 
+                    memoryGame.e.comparsion_clicked_element.style.pointerEvents = "";
+                    memoryGame.e.last_clicked_element.style.pointerEvents = "";
+
+                    memoryGame.e.comparsion_clicked_element = null;
+                    memoryGame.e.last_clicked_element = null;
+
                 } else {
                     memoryGame.e.last_clicked_element.style.pointerEvents = "none";
                     memoryGame.e.comparsion_clicked_element.style.pointerEvents = "none";
 
-                    memoryGame.e.last_clicked_element = null;
-                    memoryGame.e.comparsion_clicked_element = null;
+                    /* Show and hide the match found text */
+                    memoryGame.e.match.classList.remove("hidden");
+                    memoryGame.e.match.classList.add("visible");
+
+                    setTimeout(function() {
+                        memoryGame.e.match.classList.remove("visible");
+                        memoryGame.e.match.classList.add("hidden");
+                    }, 1000);
 
                     /* Congratualations if cards left = 0 */
                     if (memoryGame.cards_left == 0) {
@@ -70,6 +79,8 @@ memoryGame.evtCallbacks = {
                         memoryGame.e.play_again.classList.add("visible");
                         memoryGame.turnOffPointers();
                     }
+                    memoryGame.e.last_clicked_element = null;
+                    memoryGame.e.comparsion_clicked_element = null;
                 }
 
             }, 700);
