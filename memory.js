@@ -5,6 +5,7 @@ let memoryGame = {
         cards_left_e: document.getElementById("cards_left"),
         tries_left_e: document.getElementById("tries_left"),
         last_clicked_element: null,
+        comparsion_clicked_element: null,
         game_over: document.getElementById("game-over"),
         winner: document.getElementById("winner"),
         play_again: document.getElementById("play_again")
@@ -20,59 +21,58 @@ let memoryGame = {
 memoryGame.evtCallbacks = {
     showImage: function (mouseEvent) {
 
-        console.dir(mouseEvent.target);
         /* Remove and add image on click, if the images dont match make them hidden again */
-        if (mouseEvent.currentTarget.firstChild.classList.contains('hidden')) {
-            mouseEvent.currentTarget.firstChild.classList.remove('hidden');
-            mouseEvent.currentTarget.firstChild.classList.add('visible');
-            this.updateCardsNum();
-        }
+        mouseEvent.currentTarget.firstChild.classList.remove('hidden');
+        this.e.comparsion_clicked_element = mouseEvent.currentTarget;
+        mouseEvent.currentTarget.firstChild.classList.add('visible');
+        this.updateCardsNum();
 
         if(this.e.last_clicked_element != null) {
-            if(this.e.last_clicked_element != mouseEvent.currentTarget) {
-                if (this.e.last_clicked_element.firstChild.src != mouseEvent.currentTarget.firstChild.src) {
-                    
-                    this.e.last_clicked_element.firstChild.classList.remove('visible');
-                    this.e.last_clicked_element.firstChild.classList.add('hidden');
+            let memoryGame = this;
+            setTimeout(function() {
+                if (memoryGame.e.last_clicked_element.firstChild.src != memoryGame.e.comparsion_clicked_element.firstChild.src) {
 
-                    mouseEvent.currentTarget.firstChild.classList.remove('visible');
-                    mouseEvent.currentTarget.firstChild.classList.add('hidden');
+                    /* If both images arent the same flip back */
+                    memoryGame.flipBack();
 
-                    this.e.last_clicked_element = null;
+                    memoryGame.e.comparsion_clicked_element = null;
+                    memoryGame.e.last_clicked_element = null;
 
-                    this.tries_left--;
-                    this.e.tries_left_e.innerHTML = this.tries_left;
+                    memoryGame.tries_left--;
+                    memoryGame.e.tries_left_e.innerHTML = memoryGame.tries_left;
 
-                    this.cards_left = this.cards_left + 2;
-                    this.e.cards_left_e.innerHTML = this.cards_left;
+                    memoryGame.cards_left = memoryGame.cards_left + 2;
+                    memoryGame.e.cards_left_e.innerHTML = memoryGame.cards_left;
 
                     /* Game over if tries is 0 */
-                    if (this.tries_left == 0){
-                        this.showAll();
-                        this.e.game_over.classList.remove("hidden");
-                        this.e.game_over.classList.add("visible");
-                        this.e.play_again.classList.remove("hidden");
-                        this.e.play_again.classList.add("visible");
-                        this.turnOffPointers();
+                    if (memoryGame.tries_left == 0){
+                        memoryGame.showAll();
+                        memoryGame.e.game_over.classList.remove("hidden");
+                        memoryGame.e.game_over.classList.add("visible");
+                        memoryGame.e.play_again.classList.remove("hidden");
+                        memoryGame.e.play_again.classList.add("visible");
+                        memoryGame.turnOffPointers();
                     }
 
                 } else {
-                    this.e.last_clicked_element.style.pointerEvents = "none";
-                    mouseEvent.currentTarget.style.pointerEvents = "none";
+                    memoryGame.e.last_clicked_element.style.pointerEvents = "none";
+                    memoryGame.e.comparsion_clicked_element.style.pointerEvents = "none";
 
-                    this.e.last_clicked_element = null;
+                    memoryGame.e.last_clicked_element = null;
+                    memoryGame.e.comparsion_clicked_element = null;
 
                     /* Congratualations if cards left = 0 */
-                    if (this.cards_left == 0) {
-                        this.showAll();
-                        this.e.winner.classList.remove("hidden");
-                        this.e.winner.classList.add("visible");
-                        this.e.play_again.classList.remove("hidden");
-                        this.e.play_again.classList.add("visible");
-                        this.turnOffPointers();
+                    if (memoryGame.cards_left == 0) {
+                        memoryGame.showAll();
+                        memoryGame.e.winner.classList.remove("hidden");
+                        memoryGame.e.winner.classList.add("visible");
+                        memoryGame.e.play_again.classList.remove("hidden");
+                        memoryGame.e.play_again.classList.add("visible");
+                        memoryGame.turnOffPointers();
                     }
                 }
-            }
+
+            }, 700);
         } else {
             this.e.last_clicked_element = mouseEvent.currentTarget;
         }
@@ -121,6 +121,14 @@ memoryGame.updateCardsNum = function() {
     this.cards_left--;
     this.e.cards_left_e.innerHTML = this.cards_left;
 };
+
+memoryGame.flipBack = function() {
+        this.e.last_clicked_element.firstChild.classList.remove('visible');
+        this.e.last_clicked_element.firstChild.classList.add('hidden');
+        this.e.comparsion_clicked_element.firstChild.classList.remove('visible');
+        this.e.comparsion_clicked_element.firstChild.classList.add('hidden');
+
+}
 
 memoryGame.showAll = function() {
     for (let i = 0; i < this.e.cards.length; i++) {
