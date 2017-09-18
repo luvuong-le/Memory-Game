@@ -41,6 +41,13 @@ memoryGame.evtCallbacks = {
                     memoryGame.cards_left = memoryGame.cards_left + 2;
                     memoryGame.e.cards_left_e.innerHTML = memoryGame.cards_left;
 
+                    memoryGame.e.comparsion_clicked_element.style.pointerEvents = "";
+                    memoryGame.e.last_clicked_element.style.pointerEvents = "";
+
+                    memoryGame.e.comparsion_clicked_element = null;
+                    memoryGame.e.last_clicked_element = null;
+
+
                     /* Game over if tries is 0 */
                     if (memoryGame.tries_left == 0){
                         memoryGame.showAll();
@@ -50,16 +57,12 @@ memoryGame.evtCallbacks = {
                         memoryGame.e.play_again.classList.add("visible");
                         memoryGame.turnOffPointers();
                     }
-
-                    memoryGame.e.comparsion_clicked_element.style.pointerEvents = "";
-                    memoryGame.e.last_clicked_element.style.pointerEvents = "";
-
-                    memoryGame.e.comparsion_clicked_element = null;
-                    memoryGame.e.last_clicked_element = null;
-
                 } else {
                     memoryGame.e.last_clicked_element.style.pointerEvents = "none";
                     memoryGame.e.comparsion_clicked_element.style.pointerEvents = "none";
+
+                    memoryGame.e.last_clicked_element = null;
+                    memoryGame.e.comparsion_clicked_element = null;
 
                     /* Show and hide the match found text */
                     memoryGame.e.match.classList.remove("hidden");
@@ -79,8 +82,6 @@ memoryGame.evtCallbacks = {
                         memoryGame.e.play_again.classList.add("visible");
                         memoryGame.turnOffPointers();
                     }
-                    memoryGame.e.last_clicked_element = null;
-                    memoryGame.e.comparsion_clicked_element = null;
                 }
 
             }, 700);
