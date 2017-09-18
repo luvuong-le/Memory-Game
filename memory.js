@@ -13,6 +13,7 @@ let memoryGame = {
     },
     image_src: ["css.jpg", "html.png", "JSIcon.png", "profile44.jpg", "rails.png"],
     imageArray: [],
+    cardsArr: [],
     IMAGES_LENGTH: 0,
     default_cards_length: 10,
     cards_left: 10,
@@ -29,6 +30,7 @@ memoryGame.evtCallbacks = {
         this.updateCardsNum();
 
         if(this.e.last_clicked_element != null) {
+            this.turnOffPointers();
             setTimeout(function() {
                 if (memoryGame.e.last_clicked_element.firstChild.src != memoryGame.e.comparsion_clicked_element.firstChild.src) {
 
@@ -40,6 +42,11 @@ memoryGame.evtCallbacks = {
 
                     memoryGame.cards_left = memoryGame.cards_left + 2;
                     memoryGame.e.cards_left_e.innerHTML = memoryGame.cards_left;
+
+                    /* Return on all pointerEvents in the current card arrays */
+                    for (let i = 0; i < memoryGame.cardsArr.length; i++) {
+                        memoryGame.cardsArr[i].style.pointerEvents = "";
+                    }
 
                     memoryGame.e.comparsion_clicked_element.style.pointerEvents = "";
                     memoryGame.e.last_clicked_element.style.pointerEvents = "";
@@ -58,8 +65,20 @@ memoryGame.evtCallbacks = {
                         memoryGame.turnOffPointers();
                     }
                 } else {
+                    /* Remove cards from the cardArr */
+                    for (let i = 0; i < memoryGame.cardsArr.length; i++) {
+                        if (memoryGame.cardsArr[i] == memoryGame.e.last_clicked_element || memoryGame.cardsArr[i] == memoryGame.e.comparsion_clicked_element){
+                            memoryGame.cardsArr.splice(i, 1);
+                        }
+                    }
+
                     memoryGame.e.last_clicked_element.style.pointerEvents = "none";
                     memoryGame.e.comparsion_clicked_element.style.pointerEvents = "none";
+
+                    /* Turn on pointers for cards in the card array */
+                    for (let i = 0; i < memoryGame.cardsArr.length; i++) {
+                        memoryGame.cardsArr[i].style.pointerEvents = "";
+                    }
 
                     memoryGame.e.last_clicked_element = null;
                     memoryGame.e.comparsion_clicked_element = null;
@@ -177,6 +196,7 @@ memoryGame.generateCards = function() {
 
         this.imageArray.splice(rand, 1);
     }
+    this.cardsArr = Array.from(this.e.cards);
 };
 
 memoryGame.sleep = function(milliseconds) {
