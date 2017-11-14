@@ -8,23 +8,40 @@
     </head>
 
     <body>
-        <h3 class="center title"> Memory Game created with HTML CSS JS </h3>
-        <h4 class="center info"> Cards Left: <span id="cards_left"> </span> </h4>
-        <h4 class="center info"> Tries Left: <span id="tries_left"> </span> </h4>
-        <h4 id="match" class="hidden info">Match Found!</h4>
-        <h4 id="game-over" class="hidden info">Game Over! Would you like to play again? </h4>
-        <h4 id="winner" class="hidden info">You Win! Would you like to play again? </h4>
-        <a style="text-decoration: none;" href="home.html"><button class="main-menu-btn">Home</button></a> <br />
-        <button type="button" id="play_again" class="main-menu-btn hidden">Play Again</button> <br />
-        <div class="container">
-            <div id="cards_cont">
-                <!-- All the photos will be held here
-                    Each photo will go in its own div where the photo will be hid on default
-                    Eg. <div class="card">
-                            <img src="....." class="card_img" />
-                        </div>
-                -->
+        <div class="game-wrapper">
+            <div class="main-menu-title">
+                <p>Memory Game</p>
             </div>
+            <div class="game-content">
+                <h4 class="center info"> Cards Left:
+                    <span id="cards_left"> </span>
+                </h4>
+                <h4 class="center info"> Tries Left:
+                    <span id="tries_left"> </span>
+                </h4>
+                <h4 id="match" class="hidden info">Match Found!</h4>
+                <h4 id="game-over" class="hidden info">Game Over! Would you like to play again? </h4>
+                <h4 id="winner" class="hidden info">You Win! Would you like to play again? </h4>
+                <div class="game-options">
+                    <a style="text-decoration: none;" class="home simpleButton" href="home.html">Home</a>
+                    <a style="text-decoration: none;" class="game-over simpleButton hidden" id="play_again" href="#">Play Again</a>    
+                </div>
+                <br/>
+
+                <table>
+                    <tr id="cards_cont">
+                
+                    </tr>
+                </table>
+                <!-- <div id="cards_cont">
+                                <!-- All the photos will be held here
+                                    Each photo will go in its own div where the photo will be hid on default
+                                    Eg. <div class="card">
+                                            <img src="....." class="card_img" />
+                                        </div>
+                                -->
+            </div>
+
         </div>
     </body>
 

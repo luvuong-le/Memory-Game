@@ -1,8 +1,7 @@
 let modal = {
     e: {
-        rule_modal: document.getElementById("rules_modal"),
-        close: document.getElementById("close_btn"),
-        rule_text: document.getElementById("rule_text"),
+        rule_modal: document.getElementById("simpleModal"),
+        close: document.querySelector(".closeBtn"),
         rules_btn: document.getElementById("rules"),
     },
 };
@@ -22,6 +21,12 @@ modal.addListeners = function() {
     this.e.rules_btn.addEventListener("click", this.evtCallbacks.showRules.bind(this));
 
     this.e.close.addEventListener("click", this.evtCallbacks.close.bind(this));
+
+    window.addEventListener("click", (e) => {
+        if (e.target === this.e.rule_modal) {
+            this.e.rule_modal.style.display = "none";
+        }
+    });
 };
 
 modal.init = function() {

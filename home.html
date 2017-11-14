@@ -8,23 +8,30 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
-        <h3 class="title">Memory Game</h3>
         <div id="main-menu">
+            <div class="main-menu-title">
+                <p>Memory Game</p>
+            </div>
             <div class="main-menu-option">
                 <a style="text-decoration: none;" href="index.html"><button class="main-menu-btn">Play Game</button></a>
-            </div> <br />
-            <div class="main-menu-option">
                 <button id="rules" class="main-menu-btn">Show Rules</button>
-            </div>
+            </div> 
         </div>
 
-        <div id="rules_modal">
-            <div id="close">
-                <span id="close_btn" class="glyphicon glyphicon-remove"></span>
-            </div>
-            <div class="rules_smaller_modal">
-                <div id="rule-text">
-                    <h3 class="rule">Basic Memory Game, Pick two cards, if those cards are matching, they will stay flipped</h3>
+        <div id="simpleModal" class="modal">
+            <div class="rules-modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2>Memory Game</h2>
+                </div>
+                <div class="modal-body">
+                    <p>If two cards are matching the two cards will remained flipped with the cards being subtracted If two cards are not matching,
+                    the two cards will be flipped back over with the number of cards remaining being the same Max number of tries: 3 Max number
+                    of cards: 10 [This can change based on the number of images in the folder, but need to be added to the image array currently]
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <h3>Created By: Lu-Vuong Le</h3>
                 </div>
             </div>
         </div>

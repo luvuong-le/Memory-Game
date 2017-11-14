@@ -3,91 +3,155 @@
 }
 
 /* MAIN MENU */
-
 #main-menu {
-    text-align: center;
-    margin: auto;
-    border: solid 3px black;
     width: 50%;
-    height: 60%;
-    padding: 50px;
-    top: -100px;
+    height: 100%;
+    background: #eee;
+    position: absolute;
+    left: 25%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
 }
 
-.main-menu-options {
-    display: block;
+.main-menu-title {
+    width: 100%;
+    border-bottom: 2px solid grey;
+    text-transform: uppercase;
+    font-size: 45px;
+    color: coral;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.main-menu-option {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
 }
 
 .main-menu-btn {
-    text-align: center;
-    font-size: 15px;
+    height: 15%;
+    width: 100%;
+    color: #fff;
+    border: 0;
+    margin: 15px;
+    font-size: 25px;
     display: block;
-    width: 50%;
-    height: 70px;
-    margin: auto;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: crimson;
+    text-transform: uppercase;
 }
 
+.simpleButton {
+    height: 15%;
+    width: 45%;
+    color: #fff;
+    border: 0;
+    margin: auto;
+    padding: 10px;
+    font-size: 25px;
+    display: block;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: crimson;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.simpleButton:hover {
+    background: rgb(172, 79, 79);
+    cursor: pointer;
+    text-decoration: none;
+    text-decoration-line: none;
+    color: white;
+}
+
+.main-menu-btn:hover {
+    background: rgb(172, 79, 79);
+    cursor: pointer;
+}
+
+.game-options {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 auto;
+    width: 100%;
+    justify-content: space-between;
+}
 
 /* RULES MODAL */
-#rules_modal {
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     width: 100%;
     height: 100%;
-    animation-name: showRules;
+    animation-name: fadeIn;
     animation-duration: .5s;
     animation-timing-function: ease-in-out;
     transform-origin: top;
 }
 
-.rules_smaller_modal {
-    background-color: rgba(0, 255, 0, 0.85);
+
+.rules-modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;  /* Auto for left and right because we want it in the center */
     width: 50%;
-    height: 50%;
-    margin: auto;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    font-size: 20px;
+    animation-name: fadeIn; 
+    animation-duration: 1s;
 }
 
-/* Animation for the container upon click */
-@keyframes showRules {
+.modal-header h2, .modal-footer h3 {
+    margin: 0;
+}
+
+.modal-header {
+    background: coral;
+    padding: 15px;
+    color: #fff;
+}
+
+.modal-body {
+    padding: 10px 20px;
+}
+
+.modal-footer {
+    background: coral;
+    padding: 15px;
+    color: #fff;
+    text-align: center !important;
+}
+
+.closeBtn {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+}
+
+.closeBtn:hover , .closeBtn:focus {
+      cursor: pointer;
+      color: #000;
+      text-decoration: none;
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: rotateX(90deg);
-    } to {
+    }
+    to {
         opacity: 1;
-        transform: rotateX(0deg);
     }
 }
 
-#close_btn {
-    color: white;
-    cursor: pointer;
-    font-size: 50px;
-}
-
-.rule {
-    color: white;
-}
-
-#rule_text {
-    font-weight: bold;
-    text-transform: capitalize;
-    font-size: 15px;
-    text-align: center;
-    color: white;
-    padding: 50px;
-}
 
 /* MEMORY GAME PAGE CSS */
-
-#cards_cont {
-    border: solid 1.5px black;
-    width: 1200px;
-    height: 700px;
-    margin: auto;
-}
 
 .title {
     text-align: center;
@@ -109,26 +173,52 @@
     text-align: center;
 }
 
-.card {
-    width: 250px;
-    height: 200px;
-    border: solid 1.5px black;
+table {
+    margin: 0px auto;
+    min-height: 100%;
+}
+
+.game-wrapper {
+    width: 50%;
+    height: 100%;
+    background: #eee;
+    position: absolute;
+    left: 25%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+.game-content {
+    margin-top: 5%;
+}
+
+#cards_cont {
     display: flex;
-    float: left;
+    width: 50vw;
+    min-height: 50vh;
     flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    margin-right: -80px;
+    
+}
+
+.card {
+    width: 7vw;
+    height: 15vh;
     cursor: pointer;
-    margin: 5px;
-    background-color: #ccc;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: coral;
 }
 
 .card_img {
-    float: left;
-    flex-wrap: wrap;
-    width: 250px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     animation: showImage;
     animation-duration: .25s;
+    border-radius: 4px;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     transform-origin: top center;
@@ -137,11 +227,11 @@
 @keyframes showImage {
     0% {
         opacity: 0;
-        transform: rotateX(90deg);
+        transform: rotateY(180deg);
     }
     100% {
         opacity: 1;
-        transform: rotateX(0deg);
+        transform: rotateY(0deg);
     }
 
 }
@@ -180,19 +270,47 @@
     color: green;
     text-align: center;
 }
+@media screen and (max-width: 1366px) {
+    .game-wrapper {
+        height: 102vh;
+    }
 
-@media screen and (max-width: 600px) {
     #cards_cont {
+        height: 25vh;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+    #main-menu {
+        width: 100%;
+        height: 100%;
+        background: #eee;
+        position: absolute;
+        left: 0%;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    }
+
+    .game-wrapper{
+        width: 100%;
+        left: 0%;
+        background-color: #eee;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    }
+
+    #cards_cont {
+        display: flex;
+        flex-flow: row-wrap;
+        justify-content: center;
         width: 100%;
         height: 100%;
     }
     .card {
-        width: 150px;
-        height: 100px;
+        width: 15vw;
+        height: 15vh;
     }
     .card_img {
-        width: 150px;
-        height: 100px;
-
+        width: 100%;
+        height: 100%;
     }
 }

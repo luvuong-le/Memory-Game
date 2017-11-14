@@ -11,13 +11,13 @@ let memoryGame = {
         play_again: document.getElementById("play_again"),
         match: document.getElementById("match")
     },
-    image_src: ["css.jpg", "html.png", "JSIcon.png", "profile44.jpg", "rails.png"],
+    image_src: ["image1.jpeg", "image2.jpeg", "image3.jpeg", "image4.jpeg", "image5.jpeg", "image6.jpeg", "image7.jpeg", "image8.jpeg"],
     imageArray: [],
     cardsArr: [],
     IMAGES_LENGTH: 0,
     default_cards_length: 10,
     cards_left: 10,
-    tries_left: 5,
+    tries_left: 6,
 };
 
 memoryGame.evtCallbacks = {
@@ -181,9 +181,9 @@ memoryGame.generateCards = function() {
         /* There will be 10 images in the game, can change based on the number of images in the folder */
         let rand = Math.floor(Math.random() * this.imageArray.length);
         let currentImgSrc = this.imageArray[rand];
-
+    
         /* Set up card div */
-        let cardDIV = document.createElement("div");
+        let cardDIV = document.createElement("td");
         cardDIV.className = "card";
 
         /* Set up the card image */
